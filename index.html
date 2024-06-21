@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Name Display</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .heart {
+            display: none;
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            margin: 20px auto;
+            transform: rotate(-45deg);
+        }
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -100px;
+            left: 0;
+        }
+        .heart::after {
+            left: 100px;
+            top: 0;
+        }
+        .name {
+            position: absolute;
+            z-index: 999;
+            top: 50%;
+            left: 50%;
+            transform: rotate(45deg) translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <button onclick="showHeart()">My Name</button>
+        <div class="heart" id="heart">
+            <div class="name" id="nameDisplay"></div>
+        </div>
+    </div>
+
+    <script>
+        function showHeart() {
+            const name = document.getElementById('nameInput').value;
+            if (name) {
+                document.querySelector('button').style.display = 'none';
+                document.getElementById('nameInput').style.display = 'none';
+                document.getElementById('heart').style.display = 'block';
+                document.getElementById('nameDisplay').textContent = name;
+            } else {
+                alert('Please enter your name');
+            }
+        }
+    </script>
+</body>
+</html>
